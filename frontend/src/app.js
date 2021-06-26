@@ -1,7 +1,32 @@
 import React from 'react';
-
+import Header from './components/header'
+import {Container} from 'react-bootstrap';
+import {BrowserRouter as Router ,Switch,Route} from 'react-router-dom'
+import Footer from './components/footer';
+import Homescreen from './screen/homescreen'
+import Productscreen from './screen/prodcutscreen'
 const App = () => {
-    return ( <div>hi from app</div> );
+    return (
+      <>
+      <Router>
+        <Header />
+        <main>
+          <Container>
+              <Switch>
+                 <Route path='/' component={Homescreen}  exact/>
+                 <Route path='/product/:id' component={Productscreen} /> 
+
+              </Switch>
+               
+                
+          
+          </Container>
+        </main>
+        < div className=" d-flex p-5 justify-content-center"> <Footer/> </div>
+        </Router>
+      </>
+
+    )
 }
  
 export default App;
