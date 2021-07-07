@@ -1,14 +1,27 @@
-import products from '../products'
+
 import Product from '../components/product'
 import { Col,Row } from 'react-bootstrap'
+import { FETCH_PRODUCTS } from '../action/product'
+import {useEffect} from 'react'
+import {useDispatch,useSelector} from 'react-redux'
 
 const Homescreen = () => {
 
+const dispatch=useDispatch()
+   const products=useSelector((state) =>
+  
+      Object.values(state.products)
+   )
+ 
+   useEffect(()=>{
 
-   
+     dispatch(FETCH_PRODUCTS())
+
+   },[dispatch])
 
     return ( 
      <>
+     
 
      <Row>
          {products.length==0 &&<div> No product to view</div>}

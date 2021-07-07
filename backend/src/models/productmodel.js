@@ -1,14 +1,15 @@
 const {Schema,model}=require('mongoose')
-const reviewScheme=require('./reviewsmodel')
+const mongoose=require('mongoose')
+ const reviewScheme=require('./reviewsmodel')
 
 const Product = model('Product', new Schema({
 
-    user:{
-        type:mongoose.type.Schema.ObjectId,
-        required:true,
-        ref:'User'
+    // user:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     required:true,
+    //     ref:'User'
 
-    },
+    // },
 name:{
     type:String,
     required:true
@@ -17,7 +18,7 @@ name:{
       type:String,
       required:true
   },
-  reviews:[reviewScheme],
+    // reviews:[reviewScheme],
   category:{
       type:String,
       required:true

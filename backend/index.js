@@ -1,10 +1,16 @@
+require('express-async-errors');
 const express=require('express');
 const App=express();
 const helmet = require("helmet");
 const cors=require('cors')
+const routerProduct =require('./src/routes/product')
+const routerUser=require('./src/routes/user')
+const routerAuthUser=require('./src/routes/auth')
+
 
 require('dotenv/config')
 require('./config/connectdb')()
+App.use(express.json())
 
 App.use(helmet());
 App.use(cors({
@@ -14,6 +20,9 @@ App.use(cors({
     "optionsSuccessStatus": 204
 }))
 
+App.use('/api/product',routerProduct)
+App.use('/api/user',routerUser)
+App.use('/api/login',routerAuthUser)
 
 const port=process.env.PORT ||4000
 App.listen(port,()=>{console.log(`listen on port ${port}`)})
