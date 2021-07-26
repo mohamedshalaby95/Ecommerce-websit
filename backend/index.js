@@ -6,6 +6,7 @@ const cors=require('cors')
 const routerProduct =require('./src/routes/product')
 const routerUser=require('./src/routes/user')
 const routerAuthUser=require('./src/routes/auth')
+const errMidleware=require('./middelware/error')
 
 
 require('dotenv/config')
@@ -19,10 +20,11 @@ App.use(cors({
     "preflightContinue": false,
     "optionsSuccessStatus": 204
 }))
-
 App.use('/api/product',routerProduct)
 App.use('/api/user',routerUser)
 App.use('/api/login',routerAuthUser)
+App.use(errMidleware)
+
 
 const port=process.env.PORT ||4000
 App.listen(port,()=>{console.log(`listen on port ${port}`)})

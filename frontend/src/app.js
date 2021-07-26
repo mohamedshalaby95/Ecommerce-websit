@@ -10,12 +10,16 @@ import Cartscreen from './screen/cartscreen'
 import Productscreen from './screen/prodcutscreen'
 import Reduxthunk from 'redux-thunk';
 import reducer from './reducer/index'
+import Login from './screen/loginscreen'
+
 
 const cartItemsFromStroge=localStorage.getItem('cartitems')?JSON.parse(localStorage.getItem('cartitems')):[]
+//const userInfFromStroge=localStorage.getItem('userInf')?JSON.parse(localStorage.getItem('userInf')):null
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState={
-  cart:{cartitems:cartItemsFromStroge}
+  cart:{cartitems:cartItemsFromStroge},
+  userLogin:{userInf:""},
 }
 const store=createStore(reducer,initialState,composeEnhancers(applyMiddleware(Reduxthunk)))
 const App = () => {
@@ -25,12 +29,13 @@ const App = () => {
       <Router>
         <Header />
         <main>
-          <Container>
+          <Container className="mt-3">
               <Switch>
                  <Route path='/' component={Homescreen}  exact/>
                  <Route path='/product/:id' component={Productscreen} />   
                  
                   <Route path={`/cart/:id?`} component={Cartscreen} /> 
+                  <Route path={`/login`} component={Login} /> 
 
               </Switch>
                
@@ -45,8 +50,9 @@ const App = () => {
 
     )
 }
- 
-export default App;
+  
+
+export default App
 
 
 
@@ -70,48 +76,3 @@ export default App;
 
 
 
-
-//functional component
-// export default Element;
-
-// let word = "Hello";
-// const styles = {
-//     header: {
-//         border: '1px solid black',
-//         padding: '5px',
-//         borderRadius: '5px'
-//     },
-//     text: {
-//         fontFamily: 'tahoma',
-//         fontWeight: 'bold'
-//     }
-// }
-// const Element = () => {
-//     console.log('comp called')
-
-//     return (<div>
-//         <div>
-//             <h1 className="header">
-//                 {word.toLocaleUpperCase()}
-//                 {4 + 5}
-//             </h1>
-//             <p className="text" style={styles.text}>
-//                 this is our first React app.
-//     </p>
-//         </div>
-//         <input type="text" value={word} />
-
-//         <input type="button" value="change"
-//             onClick={(e) => {
-//                 // console.log('clicked')
-//                 // console.log(e)
-//                 word = "Hamada";
-//                 console.log(word)
-//                 // ReactDOM.render(<Element />, document.querySelector('#root'))
-//             }}
-//         />
-//         <img src="https://images.unsplash.com/photo-1609520505555-8bb8d82184bc?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" alt=""/>
-//         <img src="/images/photo1.jpeg" alt=""/>
-//         <p></p>
-//     </div>)
-// }
