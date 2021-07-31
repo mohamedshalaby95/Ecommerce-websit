@@ -7,14 +7,17 @@ const bcrypt=require('bcrypt')
 
 router.post('/',async(req,res) =>{
   const {error}=uservalidation(req.body)
-  console.log(error)
+ 
 
   if(error){
-      res.status(401).send(`${error.details[0].message}`)
+     
+      res.status(400)
+      throw new Error(`${error.details[0].message}`)
   }
   let user= await  User.findOne({email:req.body.email})
   if(user){
-      res.status(401).send("This email is resgisted")
+      res.status(401)
+      throw new Error("This Email is Registed")
   }
   
 
@@ -23,7 +26,7 @@ router.post('/',async(req,res) =>{
   user.password= await bcrypt.hash(user.password,salt)
     user= await user.save()
 
-    res.send(_.pick(user,['name','email']))
+    res.send(_.pick(user,['id','name','email']))
 
 })
 

@@ -11,15 +11,18 @@ import Productscreen from './screen/prodcutscreen'
 import Reduxthunk from 'redux-thunk';
 import reducer from './reducer/index'
 import Login from './screen/loginscreen'
+import Register from './screen/registerscreen'
+import Profile from './screen/profilescreen'
+
 
 
 const cartItemsFromStroge=localStorage.getItem('cartitems')?JSON.parse(localStorage.getItem('cartitems')):[]
-//const userInfFromStroge=localStorage.getItem('userInf')?JSON.parse(localStorage.getItem('userInf')):null
+const userInfFromStroge=localStorage.getItem('userInf')?JSON.parse(localStorage.getItem('userInf')):null
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState={
   cart:{cartitems:cartItemsFromStroge},
-  userLogin:{userInf:""},
+  userLogin:{userInf:userInfFromStroge},
 }
 const store=createStore(reducer,initialState,composeEnhancers(applyMiddleware(Reduxthunk)))
 const App = () => {
@@ -36,6 +39,9 @@ const App = () => {
                  
                   <Route path={`/cart/:id?`} component={Cartscreen} /> 
                   <Route path={`/login`} component={Login} /> 
+                  <Route path={'/register'}  component={Register}/>
+                  <Route path={'/profile'} component={Profile}/>
+               
 
               </Switch>
                

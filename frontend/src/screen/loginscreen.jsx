@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+//import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -14,6 +14,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {useDispatch,useSelector} from 'react-redux'
 import{userLogin} from '../action/userlogin'
+import {  Link} from 'react-router-dom'
+import {Nav, Navbar} from 'react-bootstrap'
+import '../index.css'
 
 
 
@@ -141,14 +144,19 @@ export default function SignInSide({history}) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+              <Nav>
+                <Nav.Link as={Link} to='/register' variant="body2">
+                <p className="goRegister"> Forget Password</p> 
+                </Nav.Link>
+                </Nav>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+                <Nav>
+                <Nav.Link as={Link} to='/register' variant="body2">
+                  
+                <p className="goRegister"> Don't have an account? Sign Up</p> 
+                </Nav.Link>
+                </Nav>
               </Grid>
             </Grid>
             <Box mt={5}>

@@ -8,12 +8,12 @@ import {Row,Col,ListGroup,Image,Button} from 'react-bootstrap'
 const Cartscreen = ({match,history,location}) => {
 
 const productId=match.params.id
-console.log(productId)
+
 const qty=location.search? Number (location.search.split('=')[1]):1
 const dispatch=useDispatch()
 const cart=useSelector((state) => state.cart)
 const{cartitems}=cart
-console.log(cartitems)
+
 useEffect(()=>{
     if(productId){
         dispatch(ADDTOCART(productId,qty))

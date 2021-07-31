@@ -6,7 +6,7 @@ const auth=require('../../middelware/auth')
 
 const router=express.Router()
 router.post('/',async(req,res)=>{
-    console.log(req.body)
+   
 
 const {error}=authValidation(req.body)
 
@@ -31,7 +31,7 @@ else{
         throw new Error("The email or password not valid ")
     }
     const token=user.generatetoken()
-    console.log()
+  
         res.send({
             email:user.email
             ,
@@ -50,7 +50,7 @@ else{
 })
 router.get('/profile',auth, async(req,res)=>{
     
-    console.log(req.user)
+   
     const user =await User.findById(req.user._id).select('-password')
     res.send(user)
 

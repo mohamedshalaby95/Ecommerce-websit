@@ -7,3 +7,13 @@ export const fetchProduct="FETCH_PRODUCT"
  export const userLoginSucces="USER_LOGIN_SUCCES"
  export const userLoginFail="USER_LOGIN_FAIL"
  export const userLogOut="USER_LOG_OUT"
+
+ export const userRegisterRequest="USER_LOGIN_REQUIST"
+ export const userRegisterSucces="USER_LOGIN_SUCCES"
+ export const userRegisterFail="USER_LOGIN_FAIL"
+
+
+
+ export const userProfileRequest="USER_LOGIN_REQUIST"
+ export const userprofileSucces="USER_LOGIN_SUCCES"
+ export const userprofileFail="USER_LOGIN_FAIL"
