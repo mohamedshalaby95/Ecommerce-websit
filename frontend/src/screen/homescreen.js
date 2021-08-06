@@ -24,7 +24,7 @@ const dispatch=useDispatch()
      
 
      <Row>
-         {products.length==0 &&<div> No product to view</div>}
+         {products.length===0 &&<div> No product to view</div>}
      {products.map((product) =>{
         
        

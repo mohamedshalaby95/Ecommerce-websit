@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { userProfile } from '../action/profile'
 import Load from '../components/loading'
 import { Button } from 'react-bootstrap'
 const Profile = ({ match, history, location }) => {
   const profileData = useSelector((state) => state.userProfile)
-  const { loading, error, userInf } = profileData
+  const { loading } = profileData
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(userProfile())
-  }, [])
+  }, [dispatch])
 
   return (
     <>
@@ -24,7 +24,7 @@ const Profile = ({ match, history, location }) => {
         }}
       ></div>
       <div className='mt-4 d-flex justify-content-end'>
-        {' '}
+     
         <Button onClick={()=>{
             history.push('/cart')
         }} className="m-2" variant='primary'>GO Cart</Button>

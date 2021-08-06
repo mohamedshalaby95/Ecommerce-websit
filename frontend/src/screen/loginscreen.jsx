@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-//import Link from '@material-ui/core/Link';
+
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -15,7 +15,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {useDispatch,useSelector} from 'react-redux'
 import{userLogin} from '../action/userlogin'
 import {  Link} from 'react-router-dom'
-import {Nav, Navbar} from 'react-bootstrap'
+import {Nav} from 'react-bootstrap'
+import Loading from '../components/loading'
 import '../index.css'
 
 
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide({history}) {
+export default function SignInSide({history,location}) {
   const classes = useStyles();
 
   const user=useSelector((state)=>  state.userLogin)
@@ -78,16 +79,18 @@ export default function SignInSide({history}) {
     e.preventDefault()
    dispatch(userLogin(email,password))
   }
+  const redirect=location.search?location.search.split('=')[1]:'/'
   useEffect(()=>{
     if(userInf){
-      history.push('/')
+      history.push(redirect)
     }
 
-  },[userInf,dispatch])
+  },[userInf,dispatch,redirect])
 
 
   return (
-
+    <>
+    {loading&&<Loading />}
     <Grid container  component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -166,5 +169,7 @@ export default function SignInSide({history}) {
         </div>
       </Grid>
     </Grid>
+    </>
+
   );
 }

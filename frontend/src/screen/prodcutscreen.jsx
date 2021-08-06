@@ -1,4 +1,4 @@
-import { Container, Col, Row, Button, ListGroup,Form} from 'react-bootstrap'
+import { Container, Col, Row, Button, ListGroup} from 'react-bootstrap'
 
 import Rating from '../components/rating'
 import { Link } from 'react-router-dom'
@@ -16,19 +16,19 @@ const dispatch=useDispatch()
 useEffect(()=>{
 
   dispatch(FETCH_PRODUCT(match.params.id))
-},[dispatch,qty])
+},[dispatch,qty,match.params.id])
 
 
   return (
     <>
-    {product==undefined?<h1>loading</h1>:(
+    {product===undefined?<h1>loading</h1>:(
        <Container>
        <Link to='/' className='btn btn-dark m-2'>
          GO Back
        </Link>
        <Row>
          <Col sm={12} md={6} lg={4}>
-           <img src={product.image} className='img-fluid' />
+           <img src={product.image} className='img-fluid' alt={product.name} />
          </Col>
          <Col sm={12} md={3} lg={4}>
            <h1 className='my-2'>{product.name}</h1>
@@ -71,7 +71,7 @@ useEffect(()=>{
              <ListGroup.Item className='d-flex justify-content-center  '>
                <Button onClick={()=>{
                  history.push(`/cart/${product._id}?qty=${qty}`)
-               }}  disabled={product.countInStock==0}>ADD TO CART</Button>
+               }}  disabled={product.countInStock===0}>ADD TO CART</Button>
              </ListGroup.Item>
            </ListGroup>
          </Col>

@@ -1,84 +1,81 @@
-import React from 'react';
-import { Provider} from 'react-redux'
-import { applyMiddleware,createStore,compose} from 'redux'
+import React from 'react'
+import { Provider } from 'react-redux'
+import { applyMiddleware, createStore, compose } from 'redux'
 import Header from './components/header'
-import {Container} from 'react-bootstrap';
-import {BrowserRouter as Router ,Switch,Route} from 'react-router-dom'
-import Footer from './components/footer';
+import { Container } from 'react-bootstrap'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
+import Footer from './components/footer'
 import Homescreen from './screen/homescreen'
 import Cartscreen from './screen/cartscreen'
 import Productscreen from './screen/prodcutscreen'
-import Reduxthunk from 'redux-thunk';
+import Reduxthunk from 'redux-thunk'
 import reducer from './reducer/index'
 import Login from './screen/loginscreen'
 import Register from './screen/registerscreen'
 import Profile from './screen/profilescreen'
+import Notfound from './components/notfound'
+import Shippingscreen from './screen/shippingscreen'
+import PaymentMethod from './screen/paymentmethod'
 
+const cartItemsFromStroge = localStorage.getItem('cartitems')
+  ? JSON.parse(localStorage.getItem('cartitems'))
+  : []
+const userInfFromStroge = localStorage.getItem('userInf')
+  ? JSON.parse(localStorage.getItem('userInf'))
+  : null
+const shippingFromStroge = localStorage.getItem('shippingData')
+  ? JSON.parse(localStorage.getItem('shippingData'))
+  : {}
 
-
-const cartItemsFromStroge=localStorage.getItem('cartitems')?JSON.parse(localStorage.getItem('cartitems')):[]
-const userInfFromStroge=localStorage.getItem('userInf')?JSON.parse(localStorage.getItem('userInf')):null
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const initialState={
-  cart:{cartitems:cartItemsFromStroge},
-  userLogin:{userInf:userInfFromStroge},
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const initialState = {
+  cart: { cartitems: cartItemsFromStroge, shippingData: shippingFromStroge },
+  userLogin: { userInf: userInfFromStroge },
 }
-const store=createStore(reducer,initialState,composeEnhancers(applyMiddleware(Reduxthunk)))
+const store = createStore(
+  reducer,
+  initialState,
+  composeEnhancers(applyMiddleware(Reduxthunk))
+)
 const App = () => {
-    return (
-      <>
+  return (
+    <>
       <Provider store={store}>
-      <Router>
-        <Header />
-        <main>
-          <Container className="mt-3">
+        <Router>
+          <Header />
+          <main>
+            <Container className='mt-3'>
               <Switch>
-                 <Route path='/' component={Homescreen}  exact/>
-                 <Route path='/product/:id' component={Productscreen} />   
-                 
-                  <Route path={`/cart/:id?`} component={Cartscreen} /> 
-                  <Route path={`/login`} component={Login} /> 
-                  <Route path={'/register'}  component={Register}/>
-                  <Route path={'/profile'} component={Profile}/>
-               
+                <Redirect from='/home' to='/' />
+                <Route path='/' component={Homescreen} exact />
+                <Route path='/product/:id' component={Productscreen} />
 
+                <Route path={`/cart/:id?`} component={Cartscreen} />
+                <Route path={`/login`} component={Login} />
+                <Route path={'/register'} component={Register} />
+                <Route path={'/profile'} component={Profile} />
+
+                <Route path='/shipping' component={Shippingscreen} />
+                <Route path='/payment' component={PaymentMethod} />
+                <Route path='/notfound' component={Notfound} />
+
+                <Redirect to='/notfound' />
               </Switch>
-               
-                
-          
-          </Container>
-        </main>
-        < div className=" d-flex p-5 justify-content-center"> <Footer/> </div>
+            </Container>
+          </main>
+          <div className=' d-flex p-5 justify-content-center'>
+            {' '}
+            <Footer />{' '}
+          </div>
         </Router>
-        </Provider>
-      </>
-
-    )
+      </Provider>
+    </>
+  )
 }
-  
 
 export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

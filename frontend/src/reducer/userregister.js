@@ -1,4 +1,4 @@
-import {userLoginFail,userLoginSucces,userLoginRequest,userLogOut,userRegisterFail,userRegisterRequest,userRegisterSucces} from '../action/types'
+import {userRegisterFail,userRegisterRequest,userRegisterSucces} from '../action/types'
 export const  userRegister=(state={user:{}},action)=>{
     switch(action.type){
         case userRegisterRequest: return({ ...state,loading:true})
