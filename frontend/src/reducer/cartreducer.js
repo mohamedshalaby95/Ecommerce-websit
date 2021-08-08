@@ -1,6 +1,6 @@
 import {addToCart,removeForCart,shippingSaveData,savePaymentMethod} from '../action/types'
 
-export const cartreducer=(state={cartitems:[],  shippingData:{}},action)=>{
+export const cartreducer=(state={cartitems:[],  shippingData:{}, paymentMethod:{}},action)=>{
     switch(action.type){
         case addToCart:{
             const item=action.payload

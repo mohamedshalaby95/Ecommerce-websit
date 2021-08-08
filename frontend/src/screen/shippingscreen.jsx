@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -61,8 +61,8 @@ const handelRegisterSubmit=(e)=>{
   const classes = useStyles();
 
   return (
-   <>
-   <div className='m-5'><Checkout step1 step2 /></div>
+   <div className="background">
+   <div className='m-5 p-5'><Checkout step1 step2 /></div>
    
     <Container component="main" maxWidth="xs">
     
@@ -153,5 +153,5 @@ const handelRegisterSubmit=(e)=>{
       </div>
      
     </Container>
-    </>);
+    </div>);
 }

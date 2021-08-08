@@ -9,8 +9,9 @@ const PaymentMethod = ({history}) => {
   const dispatch=useDispatch()
   const handelSubmit = (e) => {
     e.preventDefault()
-    console.log(paymentMethod)
+   
     dispatch(SavePaymentMethod(paymentMethod))
+    history.push('/placeorder')
     
 
   }
@@ -57,9 +58,7 @@ const PaymentMethod = ({history}) => {
                   }}
                 />
               </Form.Group>
-                <div className=' mt-5 d-flex justify-content-end'>     <Button onClick={()=>{
-                  history.push('/orderpalce')
-                }} disabled={paymentMethod===''} type='submit' variant='primary'>continue</Button></div>
+                <div className=' mt-5 d-flex justify-content-end'>     <Button  disabled={paymentMethod===''} type='submit' variant='primary'>continue</Button></div>
          
             </form>
           </Col>

@@ -22,7 +22,7 @@ const products= await Product.find()
 res.send(products)
 
 })
-router.get('/:id',auth ,async(req,res)=>{
+router.get('/:id' ,async(req,res)=>{
    
     
     const product= await Product.findById(req.params.id)

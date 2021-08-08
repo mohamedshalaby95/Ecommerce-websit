@@ -33,6 +33,7 @@ export const ADDTOCART=(id,qty)=> async(dispatch,getState) =>{
  }
 
  export  const SavePaymentMethod=(data)=> async (dispatch)=>{
+     
     dispatch({
         type:savePaymentMethod,
         payload:data

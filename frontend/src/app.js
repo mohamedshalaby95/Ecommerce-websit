@@ -21,6 +21,7 @@ import Profile from './screen/profilescreen'
 import Notfound from './components/notfound'
 import Shippingscreen from './screen/shippingscreen'
 import PaymentMethod from './screen/paymentmethod'
+import PlaceOrder from './screen/placeorderscreen'
 
 const cartItemsFromStroge = localStorage.getItem('cartitems')
   ? JSON.parse(localStorage.getItem('cartitems'))
@@ -62,6 +63,7 @@ const App = () => {
 
                 <Route path='/shipping' component={Shippingscreen} />
                 <Route path='/payment' component={PaymentMethod} />
+                <Route path='/placeorder' component={PlaceOrder} />
                 <Route path='/notfound' component={Notfound} />
 
                 <Redirect to='/notfound' />
