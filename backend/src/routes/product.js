@@ -1,12 +1,11 @@
 const express=require('express')
-const  mongoose  = require('mongoose')
+
 const Product = require('../models/productmodel')
 const router=express.Router()
 const auth=require('../../middelware/auth')
 const adminAuth=require('../../middelware/adminauth')
 
 const _=require('lodash')
-//const Productvalidation=require('../validation/productvalidation')
 
 router.post('/', adminAuth ,async(req,res)=>{
     const product= await new  Product(_.pick(req.body,['name','description','category','brand','image','price',' rating','numReviews','countInStock']))

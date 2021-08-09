@@ -22,4 +22,10 @@ export const fetchProduct="FETCH_PRODUCT"
  export const userprofileFail="USER_LOGIN_FAIL"
 
 
+
+ export const orderRequest="ORDER_LOADING"
+ export const orderSucces="ORDER_SUCCES"
+ export const orderFail="ORDER__FAIL"
+
+
  

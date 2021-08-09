@@ -3,10 +3,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Row, Col, Button, ListGroup } from 'react-bootstrap'
 import Card from '../components/card'
 import CartEmpty from '../components/cartempty'
+import  {Order} from '../action/order'
+import Loading from '../components/loading'
 const Placeorder = ({ history }) => {
   
   const cart = useSelector((state) => state.cart)
-     
+  const order=useSelector((state) => state.order)
+  const {data,loading,error}=order
+  
+   const dispatch=useDispatch()
 
     cart.itemsPrice= cart.cartitems
       .reduce((acc, item) => acc + item.price * item.qty, 0)
@@ -15,12 +20,21 @@ const Placeorder = ({ history }) => {
       cart.tax=cart.itemsPrice>1000?(.5*cart.itemsPrice).toFixed(2):0.00
 
       const totalPrice=((cart.itemsPrice* cart.shippingPrice)-cart.tax).toFixed(2)
+
+      useEffect(()=>{
+        if(data){
+          history.push(`order/${data.data._id}`)
+        }
+      
+
+      },[dispatch])
       
     
 
 
   return (
     <> <div >
+      {loading ?<Loading />:''}
       <div  >
         <Row>
           {cart.cartitems && cart.cartitems.length > 0
@@ -93,6 +107,20 @@ const Placeorder = ({ history }) => {
                   type='button'
                   className='btn-block w-100'
                   disable={cart.cartitems.lenght === 0}
+                  onClick={()=>{
+                  
+                    dispatch(Order({
+                      orderitems:cart.cartitems,
+                      shippingAdress:cart.shippingData,
+                      paymentMethod:cart.paymentMethod,
+                      taxPrice:cart.tax,
+                      shippingPrice:cart.shippingPrice,
+                      totalPrice:cart.totalPrice
+
+
+
+                    }))
+                  }}
                 >
                   Proceed To Checkout
                 </Button>

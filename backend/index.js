@@ -7,6 +7,7 @@ const routerProduct =require('./src/routes/product')
 const routerUser=require('./src/routes/user')
 const routerAuthUser=require('./src/routes/auth')
 const errMidleware=require('./middelware/error')
+ const routerOrder=require('./src/routes/order')
 
 
 require('dotenv/config')
@@ -23,6 +24,7 @@ App.use(cors({
 App.use('/api/product',routerProduct)
 App.use('/api/user',routerUser)
 App.use('/api/login',routerAuthUser)
+App.use('/order',routerOrder)
 App.use(errMidleware)
 
 

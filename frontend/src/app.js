@@ -22,6 +22,7 @@ import Notfound from './components/notfound'
 import Shippingscreen from './screen/shippingscreen'
 import PaymentMethod from './screen/paymentmethod'
 import PlaceOrder from './screen/placeorderscreen'
+import Order  from './screen/orderscreen'
 
 const cartItemsFromStroge = localStorage.getItem('cartitems')
   ? JSON.parse(localStorage.getItem('cartitems'))
@@ -33,10 +34,16 @@ const shippingFromStroge = localStorage.getItem('shippingData')
   ? JSON.parse(localStorage.getItem('shippingData'))
   : {}
 
+  const paymentMethodFromStroge = localStorage.getItem('paymentMethod')
+  ? JSON.parse(localStorage.getItem('paymentMethod'))
+  : {}
+
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const initialState = {
-  cart: { cartitems: cartItemsFromStroge, shippingData: shippingFromStroge },
+  cart: { cartitems: cartItemsFromStroge, shippingData: shippingFromStroge,paymentMethod:paymentMethodFromStroge },
   userLogin: { userInf: userInfFromStroge },
+
 }
 const store = createStore(
   reducer,
@@ -64,6 +71,7 @@ const App = () => {
                 <Route path='/shipping' component={Shippingscreen} />
                 <Route path='/payment' component={PaymentMethod} />
                 <Route path='/placeorder' component={PlaceOrder} />
+                <Route path='/order/:id' component={Order} />
                 <Route path='/notfound' component={Notfound} />
 
                 <Redirect to='/notfound' />

@@ -1,6 +1,8 @@
+const mongoose=require('mongoose')
 const { Schema, model } = require('mongoose')
 
-const Order = model(
+
+const Order = model('Order',
   new Schema(
     {
       user: {
@@ -23,7 +25,7 @@ const Order = model(
       ],
       shippingAdress: {
         address: { type: String, required: true },
-        coutry: { type: String, required: true },
+        country: { type: String, required: true },
         city: { type: String, required: true },
         postCode: { type: String, required: true },
       },

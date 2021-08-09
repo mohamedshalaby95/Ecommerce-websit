@@ -5,7 +5,7 @@ import profileApi from '../apis/userprofile'
 export  const userProfile=()=>async (dispatch)=>{
 
     const {token}=JSON.parse(localStorage.getItem('userInf'))
-    console.log(token)
+  
 
     try{
         dispatch({type:userProfileRequest})
