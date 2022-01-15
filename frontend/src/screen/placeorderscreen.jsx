@@ -8,9 +8,11 @@ import Loading from '../components/loading'
 const Placeorder = ({ history }) => {
   
   const cart = useSelector((state) => state.cart)
+  
+  
   const order=useSelector((state) => state.order)
   const {data,loading,error}=order
-  
+ 
    const dispatch=useDispatch()
 
     cart.itemsPrice= cart.cartitems
@@ -19,7 +21,9 @@ const Placeorder = ({ history }) => {
       cart.shippingPrice=cart.shippingData.adress==='cairo'?0.00:100
       cart.tax=cart.itemsPrice>1000?(.5*cart.itemsPrice).toFixed(2):0.00
 
-      const totalPrice=((cart.itemsPrice* cart.shippingPrice)-cart.tax).toFixed(2)
+     cart.totalPrice=(Number(cart.itemsPrice)+Number(cart.tax)+Number(cart.shippingPrice)).toFixed(2)
+    
+   
 
       useEffect(()=>{
         if(data){
@@ -27,7 +31,7 @@ const Placeorder = ({ history }) => {
         }
       
 
-      },[dispatch])
+      },[data,history])
       
     
 
@@ -60,6 +64,12 @@ const Placeorder = ({ history }) => {
             <ListGroup >
             
               <ListGroup  >
+
+                {error && <ListGroup.Item>
+                  
+                   {error}
+                  
+                  </ListGroup.Item>}
                 <ListGroup.Item style={{backgroundColor:'#101820FF',color:'#F2AA4CFF'}}>
                    Items : {''}
                       <span>
@@ -88,7 +98,7 @@ const Placeorder = ({ history }) => {
                 <ListGroup.Item style={{backgroundColor:'#F2AA4CFF',color:' #101820FF'}}>
                 Total Price : {''}
                   <span>
-                    { totalPrice}
+                    {cart.totalPrice}
                    
                   </span>
                 </ListGroup.Item>

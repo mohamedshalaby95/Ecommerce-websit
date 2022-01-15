@@ -1,0 +1,62 @@
+.error_container{
+    width: 100%;
+    height: 100vh;
+    
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #050819); 
+}
+
+@keyframes astronautFly{
+    0%{
+      left:-100px;
+    }
+    25%{
+      top:25%;
+      transform:rotate(30deg);
+    }
+    50%{
+      transform:rotate(45deg);
+      top:30%;
+    }
+    75%{
+      top:35%;
+      transform:rotate(30deg);
+    }
+    100%{
+      left:90%;
+      transform:rotate(45deg);
+    }
+  }
+ 
+.error_container div > h1{
+    color: yellow;
+    font-size: 3 rem;
+    font-weight: 900;
+    font-family:cursive, sans-serif;
+    text-align: center;
+    text-shadow: 5px 6px black;
+}
+.astronaut img{
+    width:100px;
+    position:absolute;
+    top:20%;
+    animation:astronautFly 6s infinite linear;
+  }
+.error_container div > h3{
+    color: yellow;
+    font-size: 2rem;
+    font-weight: 900;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+.error_container div > div{
+    color:  yellow;
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+   
+
+}

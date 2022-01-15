@@ -14,6 +14,7 @@ const Header = () => {
   const dispatch=useDispatch()
  
   const{userInf}=user
+  
 
   const handelLogOut=()=>{
 dispatch(userLogout())
@@ -46,6 +47,27 @@ dispatch(userLogout())
        
         
       </Nav>
+           
+           {/* admin start */}
+           <Nav className=" ml-auto">
+        
+           
+        
+            
+         {userInf && userInf.isAdmin? 
+         <NavDropdown title={"Admin"}>
+ 
+           <NavDropdown.Item as={Link} to='/admin/users'>Users</NavDropdown.Item>
+           <NavDropdown.Item as={Link} to='/admin/admins'>Admins controll</NavDropdown.Item>
+           <NavDropdown.Item onClick={ handelLogOut}>log out</NavDropdown.Item>
+         </NavDropdown>
+ : ""}
+        
+         
+       </Nav>
+
+
+{/* admin end */}
     </Navbar.Collapse>
   </Container>
 </Navbar>

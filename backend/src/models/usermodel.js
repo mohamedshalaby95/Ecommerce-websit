@@ -18,7 +18,7 @@ const userSchema=new Schema(
   { timestamps: true }
 )
 userSchema.methods.generatetoken= function(){
-  console.log(process.env.SECERT_TOKEN)
+
  const token=jwt.sign({_id:this._id,isAdmin:this.isAdmin},process.env.SECERT_TOKEN)
  return token
 }

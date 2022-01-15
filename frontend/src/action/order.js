@@ -1,5 +1,5 @@
 import orderApi from '../apis/order'
-import {orderFail,orderRequest,orderSucces} from './types'
+import {orderFail,orderRequest,orderSucces,orderPAYFail,orderPAYRequest,orderPAYSucces} from './types'
 
 
 
@@ -30,3 +30,33 @@ try{
 }
 
 }
+
+
+export const OrderPay=(orderid,paymentResult) => async(dispatch) =>{
+    const {token}=JSON.parse(localStorage.getItem('userInf'))
+try{
+
+    dispatch({type:orderPAYRequest})
+    const config={
+       headers:{
+        'Content-Type':'application/json',
+        Authorization:` Bearer ${token}`
+       }
+    }
+
+    const data= await orderApi.put(`${orderid}/pay`,paymentResult,config)
+    dispatch({
+        type:orderPAYSucces,
+        payload:data
+    })
+
+}catch(error){
+    
+    dispatch({
+        type:orderPAYFail,
+        payload:error.response&&error.response.data.message?error.response.data.message:error.message
+    })
+}
+
+}
+

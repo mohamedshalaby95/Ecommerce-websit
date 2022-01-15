@@ -23,6 +23,8 @@ import Shippingscreen from './screen/shippingscreen'
 import PaymentMethod from './screen/paymentmethod'
 import PlaceOrder from './screen/placeorderscreen'
 import Order  from './screen/orderscreen'
+import UsersAdmin from './screen/usersAdmin'
+import Userdetails from './screen/adminsScreen'
 
 const cartItemsFromStroge = localStorage.getItem('cartitems')
   ? JSON.parse(localStorage.getItem('cartitems'))
@@ -57,7 +59,7 @@ const App = () => {
         <Router>
           <Header />
           <main>
-            <Container className='mt-3'>
+            
               <Switch>
                 <Redirect from='/home' to='/' />
                 <Route path='/' component={Homescreen} exact />
@@ -72,11 +74,13 @@ const App = () => {
                 <Route path='/payment' component={PaymentMethod} />
                 <Route path='/placeorder' component={PlaceOrder} />
                 <Route path='/order/:id' component={Order} />
+                <Route path='/admin/users' component={UsersAdmin} />
+                <Route path='/admin/admins' component={Userdetails} />
                 <Route path='/notfound' component={Notfound} />
 
                 <Redirect to='/notfound' />
               </Switch>
-            </Container>
+            
           </main>
           <div className=' d-flex p-5 justify-content-center'>
             {' '}
